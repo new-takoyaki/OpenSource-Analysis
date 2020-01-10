@@ -21,25 +21,33 @@ router.route("/")
         }
     });
 
-router.get("/login", (req, res)=> {
-        console.log(`${__dirname}/login.html`);
+router.route("/login")
+    .get((req, res)=> {
         res.sendFile(`${__dirname}/login.html`);
-    });
-router.post("/login", formParser.none(), (req, res)=>{
-        console.log(req.body);
+    })
+    .post(formParser.none(), (req, res)=>{
         req.session.email = req.body.email;
         req.session.password = req.body.password;
         req.session.authenticated = true;
-        console.log(req.session);
-        res.redirect("/user");
+        req.session.save(()=>{
+            res.redirect("/user");
+        })
     });
 
 router.get("/logout", (req, res)=>{
-    req.session.destroy();
+    if(req.session.authenticated){
+        req.session.destroy(()=>{
+            res.redirect("/user");
+        });
+    }
 });
 
-router.get('/register', (req, res)=> {
-
-});
+router.route('/register')
+    .get((req, res)=> {
+        res.sendFile(`${__dirname}/register.html`);
+    })
+    .post(formParser.none(), (req, res)=>{
+        res.send(req.body);
+    });
 
 module.exports = router;

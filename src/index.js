@@ -5,6 +5,7 @@ const FileStore = require('session-file-store')(session);
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
+
 const sessionStore = session({
     secret: configs.sessionKey,
     resave: false,
@@ -14,7 +15,6 @@ const sessionStore = session({
     },
     store: FileStore()
 });
-console.log(configs);
 
 app.set('trust proxy', 1);
 
@@ -49,5 +49,6 @@ app.get('/', function (req, res, next) {
 });
 
 app.listen(configs.port, () => {
+    console.log(configs);
 	console.log(`[INFO] Port ${configs.port} Start`);		
 });
