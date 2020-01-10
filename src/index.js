@@ -1,21 +1,25 @@
-const { configs } = require("./setting");
+const configs =  require("./setting");
 const express = require("express");
+const session = require("express-session");
 const app = express();
-const router = express.Router();
 
-app.use(
-    session({ 
-        secret: configs.sessionKey, 
-        cookie: { maxAge: 60000 }
-    })
-);
+
+console.log(configs);
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+    secret: configs.sessionKey,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 
 app.use('/js', express.static("./web/js"));
 app.use('/css', express.static("./web/css"));
-app.use('/html', express.static("./web/html"));
 
 // /user 로 시작되는 경로는 전부 user.js 안에 있는 핸들러로 라우팅
-app.use("/user", require("./user"));
+const userHandler = require("./user");
+app.use("/user", userHandler);
 
 //테스트용 Hello!
 app.get("/", (req, res)=>{
@@ -23,5 +27,5 @@ app.get("/", (req, res)=>{
 });
 
 app.listen(configs.port, () => {
-	console.log('connected');		
+	console.log(`[INFO] ${configs.port} Start`);		
 });
