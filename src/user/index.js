@@ -4,7 +4,7 @@ const multer = require("multer");
 const formParser = multer();
 
 /* Custom Library Section */
-const secureLibrary = require('../libraries/security');
+const secureLibrary = require('../libraries/security/security');
 
 function requireAuthentication (req, res, next) {
 	if (!req.session || !req.session.authenticated) {
