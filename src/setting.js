@@ -4,6 +4,6 @@ const { config } = require("dotenv");
 config();
 
 module.exports = {
-    port: process.env.PORT || 9940,
+    port: process.env.PORT || 3000,
     sessionKey: process.env.SESSION_KEY || "P@SSWord?"
 };

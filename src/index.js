@@ -35,7 +35,16 @@ const userHandler = require("./user");
 userHandler.use(sessionStore);
 app.use("/user", userHandler);
 
+app.get('/', function (req, res, next) {
+	if (req.session.authenticated) {
+		res.redirect("/user/main");
+	} else {
+		res.redirect("/user/login");	
+	}
+});
+
 //테스트용!
+/*
 app.get('/', function (req, res, next) {
     console.log(req.session);
     if(req.session.num === undefined){
@@ -47,6 +56,7 @@ app.get('/', function (req, res, next) {
         res.send(`Views : ${req.session.num}`);
     });
 });
+*/
 
 app.listen(configs.port, () => {
     console.log(configs);

@@ -3,6 +3,9 @@ const router = Router();
 const multer = require("multer");
 const formParser = multer();
 
+/* Custom Library Section */
+const secureLibrary = require('../libraries/security');
+
 function requireAuthentication (req, res, next) {
 	if (!req.session || !req.session.authenticated) {
 		res.render('unauthorised', { status: 403 });
@@ -47,7 +50,17 @@ router.route('/register')
         res.sendFile(`${__dirname}/register.html`);
     })
     .post(formParser.none(), (req, res)=>{
-        res.send(req.body);
+        // res.send(req.body);
+		// 회원가입 기능 구현, 고려해야할 부분 : 기능상 구현 및 보안 (@yeon)
+		var verifyInput = new secureLibrary.VerifyInputForm("POST");
+		if (!verifyInput.verify(req.body.email) || !verifyInput.verify(req.body.password)) {
+			res.send("<script>alert('Invalid special characters');location.href='/user/register';</script>");
+		}
+		else
+		{
+			// Successful submit
+			res.send("Success!");
+		}
     });
 
 module.exports = router;
