@@ -46,7 +46,14 @@ class User extends DBManager{
 			if(!exists){
 				reject("no model");
 			}else{
-				this.Model.findOne({email: email, password: password},
+				this.Model.findOneAndUpdate(
+					{email: email, password: password},
+					{
+						$set:{
+							ip:ip,
+							lastLogin: Date.now()
+						}
+					},
 					(err, account) => {
 						if(err){
 							reject(err);

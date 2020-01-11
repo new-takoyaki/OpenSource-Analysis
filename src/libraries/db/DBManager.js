@@ -6,7 +6,6 @@ class DBManager {
 		if (dbconn !== undefined) this.db = dbconn;
 		else {
 			this.mongoose = require('mongoose');
-			this.mongoose.Promise = global.Promise;
 			
 			this.db = this.mongoose.connection;
 			
@@ -17,7 +16,10 @@ class DBManager {
 			this.db.once('open', () => {
 				console.log(" - MongoDB Connection complete");
 			});
-			this.mongoose.connect(`mongodb://localhost/${this.dbname}`);
+			this.mongoose.connect(`mongodb://localhost/${this.dbname}`, {
+				useNewUrlParser: true,
+			 	useFindAndModify: true
+			});
 		}
 		
 	}
@@ -30,6 +32,9 @@ class DBManager {
 	}
 	
 	set Connection(other_connection) {
+		if(this.db !== undefined){
+			this.db.close();
+		}
 		this.db = other_connection;
 	}
 };
