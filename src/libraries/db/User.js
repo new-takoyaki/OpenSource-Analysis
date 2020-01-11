@@ -1,4 +1,5 @@
 const DBManager = require("./DBManager");
+const { Response } = require("../../struct/api");
 
 class User extends DBManager{
 	constructor() {

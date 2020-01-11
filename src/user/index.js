@@ -26,6 +26,7 @@ router.route("/")
         }
     });
 
+//TODO : login, register 페이지 post 로직들 ajax로 교체
 router.route("/login")
     .get((req, res)=> {
         res.sendFile(`${__dirname}/login.html`);
