@@ -29,6 +29,4 @@ class DBManager {
 	}
 };
 
-module.exports = {
-	DBManager: DBManager
-};
+module.exports = DBManager;

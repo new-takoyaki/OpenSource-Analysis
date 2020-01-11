@@ -51,7 +51,7 @@ router.route('/register')
     })
     .post(formParser.none(), (req, res)=>{
         // res.send(req.body);
-		// 회원가입 기능 구현, 고려해야할 부분 : 기능상 구현 및 보안 (@yeon)
+		// 회원가입 기능 구현, 고려해야할 부분 : 기능상 구현 및 보안 (@nene)
 		var verifyInput = new secureLibrary.VerifyInputForm("POST");
 		if (!verifyInput.verify(req.body.email) || !verifyInput.verify(req.body.password)) {
 			res.send("<script>alert('Invalid special characters');location.href='/user/register';</script>");

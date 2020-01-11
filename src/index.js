@@ -43,6 +43,10 @@ app.get('/', function (req, res, next) {
 	}
 });
 
+app.get('/debug', function (req, res, next) {
+	res.redirect("/user/debug");
+});
+
 //테스트용!
 /*
 app.get('/', function (req, res, next) {
