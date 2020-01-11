@@ -1,9 +1,13 @@
+const { dbName } = require("../../setting");
+
 class DBManager {
-	constructor(name, dbconn=undefined) {
+	constructor(name=dbName, dbconn=undefined) {
 		this.dbname = name;
 		if (dbconn !== undefined) this.db = dbconn;
 		else {
 			this.mongoose = require('mongoose');
+			this.mongoose.Promise = global.Promise;
+			
 			this.db = this.mongoose.connection;
 			
 			this.db.on('error', () => {
@@ -15,6 +19,7 @@ class DBManager {
 			});
 			this.mongoose.connect(`mongodb://localhost/${this.dbname}`);
 		}
+		
 	}
 	get Schema() {
 		if (this.mongoose.Schema !== undefined)
