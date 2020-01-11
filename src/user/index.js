@@ -83,7 +83,14 @@ router.route('/register')
 		else
 		{
 			// Successful submit
-			res.send("<script>alert('Success');location.href='/user/';</script>");
+			user
+				.register(req.body.email, req.body.password)
+				.then((success)=>{
+					res.send("<script>alert('Success');location.href='/user/';</script>");
+				}, (err)=>{
+					res.send("<script>alert('register fail...');location.href='/user/';</script>");
+				});
+			
 		}
     });
 

@@ -20,11 +20,10 @@ class User extends DBManager{
 		this.Model = this.Connection.model('user', accountSchema);
 	}
 	
-	register(email, password, ip){
+	register(email, password){
 		const model = new this.Model({
 			email: email,
-			password: password,
-			ip: ip
+			password: password
 		});
 		return new Promise((resolve, reject) => {
 			model.save((err, account) => {
