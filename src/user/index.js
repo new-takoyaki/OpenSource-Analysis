@@ -2,6 +2,8 @@ const { Router } = require("express");
 const router = Router();
 const multer = require("multer");
 const formParser = multer();
+const { User } = require("../libraries/db");
+const user = new User();
 
 /* Custom Library Section */
 const secureLibrary = require('../libraries/security/security');
@@ -29,17 +31,17 @@ router.route("/login")
         res.sendFile(`${__dirname}/login.html`);
     })
     .post(formParser.none(), (req, res)=>{
-		const { User } = require("../libraries/db");
-		const user = new User();
 		user
 			.login(req.body.email, req.body.password, req.ip)
 			.then((account)=>{
 				console.log(account);
+				req.session.uid = account._id;
 				req.session.email = account.email;
 				req.session.nickname = account.nickname;
 				req.session.profile_link = account.profile_link;
 				req.session.authenticated = true;
 				req.session.save();
+				console.log(req.session);
 				res.redirect("/user");
 			}, (err)=>{
 				console.error(err);
@@ -49,9 +51,8 @@ router.route("/login")
 			});
     });
 
+//계정이 뭐 들어있는지 임시로 보기 위해서 추가
 router.get("/list", (req, res)=>{
-	const { User } = require("../libraries/db");
-	const user = new User();
 	user.userList()
 	.then((account)=>{
 		console.log(account);

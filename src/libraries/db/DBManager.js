@@ -16,9 +16,11 @@ class DBManager {
 			this.db.once('open', () => {
 				console.log(" - MongoDB Connection complete");
 			});
+			
 			this.mongoose.connect(`mongodb://localhost/${this.dbname}`, {
 				useNewUrlParser: true,
-			 	useFindAndModify: true
+				useUnifiedTopology: true,
+				useFindAndModify: true
 			});
 		}
 		

@@ -1,25 +1,22 @@
 const DBManager = require("./DBManager");
-const { Schema } = require("mongoose");
-
-const accountSchema = new Schema({
-	email: {
-		type: String,
-		unique: true
-	},
-	password: String,
-	nickname: String,
-	profile_link: String,
-	ip: String,
-    lastLogin: { 
-		type: Date, 
-		default: Date.now  
-	}
-});
-
 
 class User extends DBManager{
 	constructor() {
 		super();
+		const accountSchema = new this.Schema({
+			email: {
+				type: String,
+				unique: true
+			},
+			password: String,
+			nickname: String,
+			profile_link: String,
+			ip: String,
+			lastLogin: { 
+				type: Date, 
+				default: Date.now  
+			}
+		});
 		this.Model = this.Connection.model('user', accountSchema);
 	}
 	
@@ -76,6 +73,7 @@ class User extends DBManager{
 			console.dir(account);
 		});
 	}
+	
 	
 	userList(){
 		return new Promise((resolve, reject) => {
