@@ -3,6 +3,7 @@ const router = Router();
 const multer = require("multer");
 const formParser = multer();
 const { User } = require("../libraries/db");
+const { SessionManager } = require("../libraries/session");
 const user = new User();
 
 /* Custom Library Section */
@@ -47,16 +48,22 @@ router.route("/login")
 			// 추가로 로그 작성이나 에러 포맷 출력하기 위한 유틸 라이브러리 개발 필요 (@nene)
 		}
 		else {
+			utils.log.success("here");
 			if (verifyInput.verify(req.body.email, "MongoDB") && verifyInput.verify(req.body.password, "MongoDB")) {
 				user
 					.login(req.body.email, req.body.password, req.ip)
 					.then((account)=>{
+						utils.log.success("here");
+						utils.log.success(SessionManager);
 						// console.log(account);
-						req.session.uid = account._id;
-						req.session.email = account.email;
-						req.session.nickname = account.nickname;
-						req.session.profile_link = account.profile_link;
-						req.session.authenticated = true;
+						SessionManager.saveSessions(
+							req,
+							{"uid": "_id", "email": "email", 
+							 "nickname": "nickname", "profile_link": "profile_link",
+							 "authenticated": true},
+							account);
+						console.log(req.session);
+					
 						req.session.save();
 						utils.log.success(req.session);
 						res.redirect("/user/main");
@@ -64,6 +71,7 @@ router.route("/login")
 						utils.log.warning(err);
             			res.redirect("/user");
 					}).catch((err) => {
+						throw err;
 						res.send(err);
 					});
 			} else {
@@ -85,9 +93,7 @@ router.get("/list", (req, res)=>{
 })
 
 router.get("/logout", (req, res)=>{
-    if(req.session.authenticated){
-        req.session.destroy();
-    }
+    SessionManager.destroySessions();
 	res.redirect("/user");
 });
 
@@ -97,7 +103,7 @@ router.route('/register')
     })
     .post(formParser.none(), (req, res)=>{
         // res.send(req.body);
-		// 회원가입 기능 구현, 고려해야할 부분 : 기능상 구현 및 보안 (@yeon)
+		// 회원가입 기능 구현, 고려해야할 부분 : 기능상 구현 및 보안 (@nene)
 		var verifyInput = new secureLibrary.VerifyInputForm("POST");
 		if (!verifyInput.verify(req.body.email) || !verifyInput.verify(req.body.password)) {
 			res.send("<script>alert('Invalid special characters');location.href='/user/register';</script>");
