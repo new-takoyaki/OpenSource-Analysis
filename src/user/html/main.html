@@ -40,8 +40,8 @@
 	</ul>
 
 	<!-- 사이드바 -->
-	<div class="vertical-nav bg-white" id="sidebar">
-		<div class="py-4 px-3 mb-4 bg-light">
+	<div class="vertical-nav" id="sidebar">
+		<div class="py-4 px-3 mb-4 ">
 			<div class="media d-flex align-items-center">
 				<img
 					src="https://avatars3.githubusercontent.com/u/59767286?s=200&v=4"
@@ -57,38 +57,64 @@
 
 		<ul class="nav flex-column bg-white mb-0">
 			<li class="nav-item" id="home">
-				<a href="#" class="nav-link text-dark font-italic bg-light">
+				<a href="#" class="nav-link text-dark font-italic">
 					<i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
 					Home
 				</a>
 			</li>
 			<li class="nav-item" id="about">
-				<a href="#" class="nav-link text-dark font-italic bg-light">
+				<a href="#" class="nav-link text-dark font-italic">
 					<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
 					About
 				</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a href="#services" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic bg-light" data-toggle="collapse">
+				<a href="#services" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic " data-toggle="collapse">
 					<i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
 					Services
 				</a>
-				<ul id="services" class="panel-collapse collapse panel-switch" role="menu">
-					<li><i class="fa fa-caret-right mr-3 text-dark font-italic" id="services-submenu">&nbsp;Menu1</i></li>
-					<li><i class="fa fa-caret-right mr-3 text-dark font-italic" id="services-submenu">&nbsp;Menu2</i></li>
+				<ul id="services" class="list-group list-group-flush panel-collapse collapse panel-switch" role="menu">		
+					<li>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu</i>
+						<span></span>
+					</li>
+					<li>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu2</i>
+						<span></span>
+					</li>
 				</ul>
 			</li>
 			
 			<li class="nav-item dropdown">
-				<a href="#projects" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic bg-light" data-toggle="collapse">
+				<a href="#projects" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic" data-toggle="collapse">
 				<i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
 					Projects
 				</a>
-				<ul id="projects" class="panel-collapse collapse panel-switch" role="menu">
+				<ul id="projects" class="list-group list-group-flush panel-collapse collapse panel-switch " role="menu">
+					<li>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu</i>
+						<span></span>
+					</li>
+					<li>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu2</i>
+						<span></span>
+					</li>
+				</ul>
+			</li>
+			
+			<!--
+			구버전 비교용 보존
+			<li class="nav-item dropdown">
+				<a href="#projects" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic" data-toggle="collapse">
+				<i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+					Projects
+				</a>
+				<ul id="projects" class="panel-collapse collapse panel-switch bg-light" role="menu">
 					<li><i class="fa fa-caret-right text-dark" id="project-submenu">&nbsp;Menu1</i></li>
 					<li><i class="fa fa-caret-right text-dark" id="project-submenu">&nbsp;Menu2</i></li>
 				</ul>
 			</li>
+			-->
 		</ul>
 		<div class="footer-copyright py-3 text-center footer">
 			<i class="text-muted font-weight-lighter">Since 2020. Made by</i><br />
