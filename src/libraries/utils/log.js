@@ -26,6 +26,11 @@ const BgCyan = "\x1b[46m"
 const BgWhite = "\x1b[47m"
 /* --------------- */
 
+function info(message)
+{
+	console.log(FgGreen, '%s\x1b[0m', message);
+}
+
 function success(message)
 {
 	console.log(FgCyan + '%s\x1b[0m', message);
@@ -36,7 +41,7 @@ function warning(message)
 	console.log(FgYellow + '%s\x1b[0m', message);
 }
 
-function ctirical(message)
+function critical(message)
 {
 	console.log(FgRed + '%s\x1b[0m', message);
 }
@@ -47,6 +52,7 @@ function clean_terminal()
 }
 
 module.exports = {
+	info: info,
 	success: success,
 	warning: warning,
 	critical: critical,

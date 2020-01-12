@@ -7,6 +7,7 @@ const user = new User();
 
 /* Custom Library Section */
 const secureLibrary = require('../libraries/security/security');
+const utils = require('../libraries/utils');
 
 function requireAuthentication (req, res, next) {
 	if (!req.session || !req.session.authenticated) {
@@ -18,7 +19,7 @@ function requireAuthentication (req, res, next) {
 
 router.route("/")
     .get((req, res) => {
-        console.log(req.session);
+        utils.log.info(req.session);
         if(req.session.authenticated){
             res.send(`Your ID : ${req.session.email}`);
         }else{
@@ -57,10 +58,10 @@ router.route("/login")
 						req.session.profile_link = account.profile_link;
 						req.session.authenticated = true;
 						req.session.save();
-						console.log(req.session);
+						utils.log.success(req.session);
 						res.redirect("/user/main");
 					}, (err)=>{
-						console.error(err);
+						utils.log.warning(err);
             			res.redirect("/user");
 					}).catch((err) => {
 						res.send(err);
@@ -76,7 +77,7 @@ router.route("/login")
 router.get("/list", (req, res)=>{
 	user.userList()
 	.then((account)=>{
-		console.log(account);
+		utils.log.info(account);
 		res.send(account);
 	}, (err)=>{
 		res.send(err);

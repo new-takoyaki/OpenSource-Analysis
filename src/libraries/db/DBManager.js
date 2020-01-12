@@ -1,4 +1,5 @@
 const { dbName } = require("../../setting");
+const utils = require("../utils");
 
 class DBManager {
 	constructor(name=dbName, dbconn=undefined) {
@@ -10,11 +11,11 @@ class DBManager {
 			this.db = this.mongoose.connection;
 			
 			this.db.on('error', () => {
-				console.error(" - MongoDB Connection error (DBManager)");
+				utils.log.critical(" - MongoDB Connection error (DBManager)");
 				process.exit(1);
 			});
 			this.db.once('open', () => {
-				console.log(" - MongoDB Connection complete");
+				utils.log.success(" - MongoDB Connection Completes");
 			});
 			
 			this.mongoose.connect(`mongodb://localhost/${this.dbname}`, {
