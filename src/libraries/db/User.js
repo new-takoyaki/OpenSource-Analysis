@@ -16,15 +16,32 @@ class User extends DBManager{
 			lastLogin: { 
 				type: Date, 
 				default: Date.now  
+			},
+			blocked: {
+				type: Boolean,
+				default: false
+			},
+			failed_count: {
+				type: Number,
+				default: 0
 			}
 		});
 		this.Model = this.Connection.model('user', accountSchema);
 	}
 	
+	get Model() {
+		if (this.Model !== undefined) {
+			return this.Model;
+		} else {
+			
+		}
+	}
+	
 	register(email, password){
 		const model = new this.Model({
 			email: email,
-			password: password
+			password: password,
+			nickname: "Default-NickName"
 		});
 		return new Promise((resolve, reject) => {
 			model.save((err, account) => {

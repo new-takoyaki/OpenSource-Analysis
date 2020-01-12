@@ -32,24 +32,35 @@ router.route("/login")
         res.sendFile(`${__dirname}/login.html`);
     })
     .post(formParser.none(), (req, res)=>{
-		user
-			.login(req.body.email, req.body.password, req.ip)
-			.then((account)=>{
-				console.log(account);
-				req.session.uid = account._id;
-				req.session.email = account.email;
-				req.session.nickname = account.nickname;
-				req.session.profile_link = account.profile_link;
-				req.session.authenticated = true;
-				req.session.save();
-				console.log(req.session);
-				res.redirect("/user");
-			}, (err)=>{
-				console.error(err);
-            	res.redirect("/user");
-			}).catch((err) => {
-				res.send(err);
-			});
+		var verifyInput = new secureLibrary.VerifyInputForm("POST");
+		if (!verifyInput.check_ip(req.ip)) {
+			// log writting
+			// 추가로 로그 작성이나 에러 포맷 출력하기 위한 유틸 라이브러리 개발 필요 (@nene)
+		}
+		else {
+			if (!verifyInput.verify(req.body.email) || !verifyInput.verify(req.body.password)) {
+				user
+					.login(req.body.email, req.body.password, req.ip)
+					.then((account)=>{
+						console.log(account);
+						req.session.uid = account._id;
+						req.session.email = account.email;
+						req.session.nickname = account.nickname;
+						req.session.profile_link = account.profile_link;
+						req.session.authenticated = true;
+						req.session.save();
+						console.log(req.session);
+						res.redirect("/user");
+					}, (err)=>{
+						console.error(err);
+            			res.redirect("/user");
+					}).catch((err) => {
+						res.send(err);
+					});
+			} else {
+				// log writting (login failed)
+			}
+		}
     });
 
 //계정이 뭐 들어있는지 임시로 보기 위해서 추가

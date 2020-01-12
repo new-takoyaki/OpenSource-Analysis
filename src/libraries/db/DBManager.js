@@ -39,6 +39,11 @@ class DBManager {
 		}
 		this.db = other_connection;
 	}
+	
+	close() {
+		if (this.db !== undefined)
+			this.db.close();
+	}
 };
 
 module.exports = DBManager;
