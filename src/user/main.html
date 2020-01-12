@@ -1,67 +1,91 @@
 <html>
 <head>
-    <script type="ext/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <link rel="stylesheet" href="/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- <link rel="stylesheet" href="/css/login.css"> -->
+	<script>
+	$(function() {
+		$('#sidebarCollapse').on('click', function() {
+		$('#sidebar, #content').toggleClass('active');
+		});
+	});
+	</script>
 	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-	<div class="wrapper">
-		<!-- Sidebar Menu -->
-	<div class="bg-light border-right" id="sidebar-wrapper">
-		<div class="sidebar-heading text-center">
-			<img id="profile-photo" src="https://avatars3.githubusercontent.com/u/59767286?s=200&v=4" />
-			<a class="card-text">나는 빡빡이다</a>
+	<!-- 상단 네비바 -->
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+		<a class="nav-link active" href="#">진행중1</a>
+		</li>
+			<li class="nav-item">
+			<a class="nav-link" href="#">아직 진행 안함</a>
+		</li>
+			<li class="nav-item">
+			<a class="nav-link" href="#">오늘 야근</a>
+		</li>
+	</ul>
+
+	<!-- 사이드바 -->
+	<div class="vertical-nav bg-white" id="sidebar">
+		<div class="py-4 px-3 mb-4 bg-light">
+			<div class="media d-flex align-items-center">
+				<img
+					src="https://avatars3.githubusercontent.com/u/59767286?s=200&v=4"
+					class="mr-3 rounded-circle profile_img img-thumbnail shadow-sm">
+				<div class="media-body">
+					<h4 class="m-0">Hello</h4>
+					<p class="font-weight-light text-muted mb-0">Noob</p>
+				</div>
+			</div>
 		</div>
-		<div class="list-group list-group-flush">
-			<a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-			<a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-		</div>
+
+		<p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+		<ul class="nav flex-column bg-white mb-0">
+			<li class="nav-item">
+				<a href="#" class="nav-link text-dark font-italic bg-light">
+					<i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+					Home
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link text-dark font-italic">
+					<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+					About
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link text-dark font-italic">
+					<i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+					Services
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link text-dark font-italic">
+					<i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+					Gallery
+				</a>
+			</li>
+		</ul>
 	</div>
-		<!--
-		<nav id="leftSidebar">
-			<div id="toggleButtonTab">
-				
-			</div>
-			<div id="img-tab">
-				
-			</div>
-			<div id="username-tab">
-				
-			</div>
-			<ul class="leftMenu-list">
-				
-			</ul>
-		</nav>
-		-->
-		
-		<!-- Page Main Contents frame -->
-		<div id="contents">
-			<ul class="nav nav-tabs">
-			  <li class="nav-item">
-				<a class="nav-link active" href="#">진행중1</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">아직 진행 안함</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">오늘 야근</a>
-			  </li>
-			</ul>
-			<div id="topMenubar">
-				<!-- Top Menu bar section, we need to insert menus -->
-			</div>
+
+	<div class="page-content p-5" id="content">
+		<!-- Toggle button -->
+		<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
+			<i class="fa fa-bars mr-2"></i>
+			<small class="text-uppercase font-weight-bold">Toggle</small>
+		</button>
+		<h2 class="display-4 text-black">Test</h2>
+		<iframe src="/user/test">
+
+		</iframe>
+
+		<div id="topMenubar">
+			<!-- Top Menu bar section, we need to insert menus -->
 		</div>
-		<!-- <div id="rightMenu"></div> -->
-		<!-- rightMenu removed -->
-		<nav id="chat-frame">
-		</nav>
 	</div>
 </body>
 </html>

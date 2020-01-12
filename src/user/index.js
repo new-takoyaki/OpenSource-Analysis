@@ -28,6 +28,10 @@ router.route("/")
         }
     });
 
+router.get("/test", (req, res)=> {
+	res.sendFile(`${__dirname}/test.html`);
+});
+
 router.route("/main")
 	.get((req, res)=> {
 		res.sendFile(`${__dirname}/main.html`);
