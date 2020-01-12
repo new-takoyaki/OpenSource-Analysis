@@ -29,7 +29,7 @@ class User extends DBManager{
 		this.Model = this.Connection.model('user', accountSchema);
 	}
 	
-	get Model() {
+	get model() {
 		if (this.Model !== undefined) {
 			return this.Model;
 		} else {
@@ -54,12 +54,67 @@ class User extends DBManager{
 		});
 	}
 	
+	login_failed(email)
+	{
+		return new Promise(async (resolve, reject) => {
+			const exists = await this.Model.exists({email: email});
+			if (!exists) {
+				reject("no matched accounts");
+			} else {
+				this.Model.updateOne(
+					{email: email},
+					{
+						$inc: {failed_count: 1}
+					}, (err) => {
+						if (err) reject(err);
+					}
+				);
+				resolve(true);
+			}
+		});
+	}
+	
+	account_block(email)
+	{
+		return new Promise(async (resolve, reject) => {
+			this.Model.findOne( {email: email}, 'failed_count',
+				(err, result) => {
+					if (err) reject(err);
+					if (result['failed_count'] >= 5) {
+						this.Model.updateOne( {email: email},
+							{
+								$set: {blocked: true}
+							}, (err) => {
+								if (err) reject(err);
+							}
+						);
+						resolve(true);
+					} else {
+						resolve(false);
+					}
+				}
+			);
+		});
+	}
+	
+	login_and_block_test() {
+		try {
+			this.userList();
+		} catch (e) {
+			throw e;
+		}
+	}
+	
 	login(email, password, ip){
 		return new Promise(async (resolve, reject) => {
 			const exists = await this.Model.exists({email: email, password: password});
+			const blocked = await this.Model.exists({email: email, blocked: true});
+			
 			if(!exists){
 				reject("no model");
-			}else{
+			} else if (blocked) {
+				reject("account blocked");
+			} else{
 				this.Model.findOneAndUpdate(
 					{email: email, password: password},
 					{

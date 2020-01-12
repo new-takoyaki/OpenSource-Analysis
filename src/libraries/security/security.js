@@ -99,6 +99,8 @@ class VerifyInputForm
 		}
 		else if (type === "MongoDB")
 		{
+			console.log(this.secureInjection.customPreventMongoDB(form));
+			console.log(form);
 			return this.secureInjection.customPreventMongoDB(form) == form ? true : false;
 		}
 	}
