@@ -20,6 +20,10 @@
 	position: absolute;
 }
 
+.footer{
+	position: absolute;
+	bottom: 0;
+}
 .profile_img {
 	width: 20%;
 }
@@ -28,7 +32,6 @@
 .vertical-nav {
 	min-width: 17rem;
 	width: 17rem;
-	height: calc(100% - 1rem);
 	position: absolute;
 	left: 0;
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
@@ -126,8 +129,6 @@ iframe {
 }
 
 #services-submenu {
-	margin-top: 8px;
-	margin-bottom: 8px;
 	color: black;
 }
 

@@ -6,6 +6,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
 
+//TODO : cluster적용
+//redis 서버 옛날에 작업하던 서버 9945 포트로 열어둠
+//2020.01.13 중으로 패치 예정
+
 const sessionStore = session({
     secret: configs.sessionKey,
     resave: false,

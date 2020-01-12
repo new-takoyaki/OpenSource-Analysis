@@ -26,21 +26,8 @@
 	<link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-	<!-- 상단 네비바 -->
-	<ul class="nav nav-tabs">
-		<li class="nav-item">
-		<a class="nav-link active" href="#">진행중1</a>
-		</li>
-			<li class="nav-item">
-			<a class="nav-link" href="#">아직 진행 안함</a>
-		</li>
-			<li class="nav-item">
-			<a class="nav-link" href="#">오늘 야근</a>
-		</li>
-	</ul>
-
 	<!-- 사이드바 -->
-	<div class="vertical-nav" id="sidebar">
+	<div class="vertical-nav vh-100" id="sidebar">
 		<div class="py-4 px-3 mb-4 ">
 			<div class="media d-flex align-items-center">
 				<img
@@ -75,11 +62,11 @@
 				</a>
 				<ul id="services" class="list-group list-group-flush panel-collapse collapse panel-switch" role="menu">		
 					<li>
-						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu</i>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;&#9;Menu</i>
 						<span></span>
 					</li>
 					<li>
-						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu2</i>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;&#9;Menu2</i>
 						<span></span>
 					</li>
 				</ul>
@@ -92,11 +79,11 @@
 				</a>
 				<ul id="projects" class="list-group list-group-flush panel-collapse collapse panel-switch " role="menu">
 					<li>
-						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu</i>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;&#9;Menu</i>
 						<span></span>
 					</li>
 					<li>
-						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;Menu2</i>
+						<i class="fa fa-cubes list-group-item list-group-item-action text-muted" id="project-submenu">&nbsp;&#9;Menu2</i>
 						<span></span>
 					</li>
 				</ul>
@@ -127,6 +114,19 @@
 			</a>
 		</div>
 	</div>
+
+	<!-- 상단 네비바 -->
+	<ul class="page-content nav nav-tabs" id="content">
+		<li class="nav-item">
+			<a class="nav-link" href="#">진행중1</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link active" href="#">아직 진행 안함</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">오늘 야근</a>
+		</li>
+	</ul>
 
 	<div class="page-content p-5" id="content">
 		<!-- Toggle button -->
