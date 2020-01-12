@@ -22,6 +22,10 @@ function requireAuthentication (req, res, next) {
 
 router.use('/js', static(join(__dirname, 'js')));
 router.use('/css', static(join(__dirname, 'css')));
+router.use('/html', static(join(__dirname, 'html')));
+
+router.all(["/about", "/test", "/main"], (req, res) => 
+		   res.sendFile(`${__dirname}/html${req._parsedUrl.path}.html`));
 
 router.route("/")
     .get((req, res) => {
@@ -32,19 +36,6 @@ router.route("/")
             res.redirect("/user/login");
         }
     });
-
-router.get("/about", (req, res)=> {
-	res.sendFile(`${__dirname}/html/about.html`);
-});
-
-router.get("/test", (req, res)=> {
-	res.sendFile(`${__dirname}/html/test.html`);
-});
-
-router.route("/main")
-	.all((req, res)=> {
-	res.sendFile(`${__dirname}/html/main.html`);
-	});
 
 //TODO : login, register 페이지 post 로직들 ajax로 교체
 router.route("/login")
