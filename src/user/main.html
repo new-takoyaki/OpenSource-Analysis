@@ -10,12 +10,15 @@
 	<script>
 	$(function() {
 		$('#sidebarCollapse').on('click', function() {
-		$('#sidebar, #content').toggleClass('active');
+			$('#sidebar, #content').toggleClass('active');
 			if (document.getElementById("collapseButton").innerHTML === "Open") {
 				document.getElementById("collapseButton").innerHTML = "Close";
 			} else {
 				document.getElementById("collapseButton").innerHTML = "Open";
 			}
+		});
+		$('#chatToggle').on('click', function(){
+			alert("test");
 		});
 	});
 	</script>
@@ -71,8 +74,8 @@
 					Services
 				</a>
 				<ul id="services" class="panel-collapse collapse panel-switch" role="menu">
-					<li><i class="fa fa-caret-right mr-3 text-primary" id="services-submenu">&nbsp;Menu1</i></li>
-					<li><i class="fa fa-caret-right mr-3 text-primary" id="services-submenu">&nbsp;Menu2</i></li>
+					<li><i class="fa fa-caret-right mr-3 text-dark font-italic" id="services-submenu">&nbsp;Menu1</i></li>
+					<li><i class="fa fa-caret-right mr-3 text-dark font-italic" id="services-submenu">&nbsp;Menu2</i></li>
 				</ul>
 			</li>
 			
@@ -82,14 +85,19 @@
 					Projects
 				</a>
 				<ul id="projects" class="panel-collapse collapse panel-switch" role="menu">
-					<li><i class="fa fa-caret-right mr-3 text-primary" id="project-submenu">&nbsp;Menu1</i></li>
-					<li><i class="fa fa-caret-right mr-3 text-primary" id="project-submenu">&nbsp;Menu2</i></li>
+					<li><i class="fa fa-caret-right text-dark" id="project-submenu">&nbsp;Menu1</i></li>
+					<li><i class="fa fa-caret-right text-dark" id="project-submenu">&nbsp;Menu2</i></li>
 				</ul>
 			</li>
 		</ul>
 		<div class="footer-copyright py-3 text-center footer">
-			<a onclick="alert('test');">
-				<i class="text-muted font-weight-lighter">Author</i>
+			<i class="text-muted font-weight-lighter">Since 2020. Made by</i><br />
+			<a onclick="location.href='/user/about';">
+				<i class="font-weight-lighter">
+					<p class="text-gray">
+					newtakoyaki
+					</p>
+				</i>
 			</a>
 		</div>
 	</div>
@@ -108,9 +116,9 @@
 		<div id="chat" class="card">
 			<div class="card-header">
 				Chat
-				<i class="fa fa-minus">
-					
-				</i>
+				<button id="chatToggle" type="button" class="close" aria-hidden="true">
+					&times;
+				</button>
 			</div>
 			<div class="card-body overflow-auto">
 				<div class="media mb-3">

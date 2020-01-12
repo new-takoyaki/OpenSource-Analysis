@@ -63,9 +63,6 @@ time{
 	position: fixed;
 }
 
-.send-message {
-	text-align:right;	
-}
 
 @media (max-width: 768px) {
   #sidebar {
@@ -134,6 +131,10 @@ iframe {
 	margin-top: 8px;
 	margin-bottom: 8px;
 	color: black;
+}
+
+.nav-item ul {
+	background-color: white;
 }
 
 /*
