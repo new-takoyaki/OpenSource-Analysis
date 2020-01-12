@@ -24,7 +24,13 @@ class User extends DBManager{
 			failed_count: {
 				type: Number,
 				default: 0
-			}
+			},
+			groups: [
+				{
+					type: String,
+					default: undefined
+				}
+			]
 		});
 		this.Model = this.Connection.model('user', accountSchema);
 	}

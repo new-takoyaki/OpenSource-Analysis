@@ -6,6 +6,9 @@ const DBManager = require("./DBManager");
 //로그인시 가입된 그룹을 찾을때 모든 그룹을 다 뒤져서 유저 정보를 찾아야되서 비효율 적임
 //유저에도 그룹 정보를 넣을지 다른 방안 모색 필요
 
+// @nene : 그냥 유저가 특정 그룹들에 대한 별칭이나 ID를 가지는 리스트를 가지게 하면 되는 문제 아닌가??
+// User account 관련 스키마를 확장하면 해결되는 문제라고 생각함.
+
 class Group extends DBManager{
 	constructor() {
 		super();

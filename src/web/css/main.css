@@ -1,0 +1,108 @@
+.wrapper {
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+/* The side navigation menu */
+#leftSidebar {
+	height: 100%; /* 100% Full-height */
+	width: 15%; /* 0 width - change this with JavaScript */
+	z-index: 1; /* Stay on top */
+	top: 0; /* Stay at the top */
+	left: 0;
+	background-color: gray; /* Black*/
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 60px; /* Place content 60px from the top */
+	padding-left: 10%;
+	transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+	position: absolute;
+}
+
+#profile-photo {
+  	border-radius: 50%;
+	margin-left: 10%;
+	width: 80%;
+	height: auto;
+}
+
+#sidebar-wrapper {
+	min-height: 100vh;
+	width: 15%;
+	margin-left: -15rem;
+	-webkit-transition: margin .25s ease-out;
+	-moz-transition: margin .25s ease-out;
+	-o-transition: margin .25s ease-out;
+	transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+}
+
+.list-group {
+  width: 100%;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #contents {
+    min-width: 0;
+    left: 0%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+#contents {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 15%;
+	overflow-x: hidden;
+	transition: 0.5s;
+}
+
+#rightSidebar {
+	height: 100%;
+	width: 15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 85%;
+	background-color: gray;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+}
+
+/*
+#rightSidebar {
+	height: 100%;
+	width: 15%;
+	z-index: 1;
+	top: 0;
+	left: 100%;
+	right: 0;
+	background-color: black;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.5s;
+}
+*/
