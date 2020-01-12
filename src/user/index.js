@@ -1,9 +1,11 @@
-const { Router } = require("express");
+const { Router, static } = require("express");
+const { join } = require("path");
+const { User } = require("../libraries/db");
+const { SessionManager } = require("../libraries/session");
+
 const router = Router();
 const multer = require("multer");
 const formParser = multer();
-const { User } = require("../libraries/db");
-const { SessionManager } = require("../libraries/session");
 const user = new User();
 
 /* Custom Library Section */
@@ -18,6 +20,9 @@ function requireAuthentication (req, res, next) {
 	next();
 }
 
+router.use('/js', static(join(__dirname, 'js')));
+router.use('/css', static(join(__dirname, 'css')));
+
 router.route("/")
     .get((req, res) => {
         utils.log.info(req.session);
@@ -28,22 +33,23 @@ router.route("/")
         }
     });
 
+router.get("/about", (req, res)=> {
+	res.sendFile(`${__dirname}/html/about.html`);
+});
+
 router.get("/test", (req, res)=> {
-	res.sendFile(`${__dirname}/test.html`);
+	res.sendFile(`${__dirname}/html/test.html`);
 });
 
 router.route("/main")
-	.get((req, res)=> {
-		res.sendFile(`${__dirname}/main.html`);
-	})
-	.post(formParser.none(), (req, res)=>{
-		res.sendFile(`${__dirname}/main.html`);
+	.all((req, res)=> {
+	res.sendFile(`${__dirname}/html/main.html`);
 	});
 
 //TODO : login, register 페이지 post 로직들 ajax로 교체
 router.route("/login")
     .get((req, res)=> {
-        res.sendFile(`${__dirname}/login.html`);
+        res.sendFile(`${__dirname}/html/login.html`);
     })
     .post(formParser.none(), (req, res)=>{
 		var verifyInput = new secureLibrary.VerifyInputForm("POST");
@@ -103,7 +109,7 @@ router.get("/logout", (req, res)=>{
 
 router.route('/register')
     .get((req, res)=> {
-        res.sendFile(`${__dirname}/register.html`);
+        res.sendFile(`${__dirname}/html/register.html`);
     })
     .post(formParser.none(), (req, res)=>{
         // res.send(req.body);
