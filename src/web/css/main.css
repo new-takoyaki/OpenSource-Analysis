@@ -42,7 +42,6 @@
 }
 
 /* for toggle behavior */
-
 #sidebar.active {
   margin-left: -17rem;
 }
@@ -50,6 +49,22 @@
 #content.active {
   width: 100%;
   margin: 0;
+}
+
+time{
+	font-size: 0.2rem;
+}
+
+#chat {
+	width: 25%;
+	height: 40%;
+	right: 0%;
+	bottom: 0%;
+	position: fixed;
+}
+
+.send-message {
+	text-align:right;	
 }
 
 @media (max-width: 768px) {
@@ -79,7 +94,6 @@ iframe {
 	height: 50%;
 }
 
-
 #rightSidebar {
 	height: 100%;
 	width: 15%;
@@ -90,6 +104,36 @@ iframe {
 	overflow-x: hidden;
 	padding-top: 60px;
 	transition: 0.5s;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: auto;
+}
+
+#projects li {
+	list-style-type: none;
+	margin-left: 1rem;
+}
+
+#project-submenu {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: black;
+}
+
+#services li {
+	list-style-type: none;
+	margin-left: 1rem;
+}
+
+#services-submenu {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	color: black;
 }
 
 /*

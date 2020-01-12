@@ -1,17 +1,25 @@
 <html>
 <head>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-    <link rel="stylesheet" href="/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- <link rel="stylesheet" href="/css/login.css"> -->
 	<script>
 	$(function() {
 		$('#sidebarCollapse').on('click', function() {
 		$('#sidebar, #content').toggleClass('active');
+			if (document.getElementById("collapseButton").innerHTML === "Open") {
+				document.getElementById("collapseButton").innerHTML = "Close";
+			} else {
+				document.getElementById("collapseButton").innerHTML = "Open";
+			}
 		});
 	});
 	</script>
+	<script type="text/javascript" src="/js/toggle.js"></script>
 	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -45,44 +53,105 @@
 		<p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
 
 		<ul class="nav flex-column bg-white mb-0">
-			<li class="nav-item">
+			<li class="nav-item" id="home">
 				<a href="#" class="nav-link text-dark font-italic bg-light">
 					<i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
 					Home
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="#" class="nav-link text-dark font-italic">
+			<li class="nav-item" id="about">
+				<a href="#" class="nav-link text-dark font-italic bg-light">
 					<i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
 					About
 				</a>
 			</li>
-			<li class="nav-item">
-				<a href="#" class="nav-link text-dark font-italic">
+			<li class="nav-item dropdown">
+				<a href="#services" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic bg-light" data-toggle="collapse">
 					<i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
 					Services
 				</a>
+				<ul id="services" class="panel-collapse collapse panel-switch" role="menu">
+					<li><i class="fa fa-caret-right mr-3 text-primary" id="services-submenu">&nbsp;Menu1</i></li>
+					<li><i class="fa fa-caret-right mr-3 text-primary" id="services-submenu">&nbsp;Menu2</i></li>
+				</ul>
 			</li>
-			<li class="nav-item">
-				<a href="#" class="nav-link text-dark font-italic">
-					<i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
-					Gallery
+			
+			<li class="nav-item dropdown">
+				<a href="#projects" class="nav-link accordion-toggle collapsed toggle-switch text-dark font-italic bg-light" data-toggle="collapse">
+				<i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+					Projects
 				</a>
+				<ul id="projects" class="panel-collapse collapse panel-switch" role="menu">
+					<li><i class="fa fa-caret-right mr-3 text-primary" id="project-submenu">&nbsp;Menu1</i></li>
+					<li><i class="fa fa-caret-right mr-3 text-primary" id="project-submenu">&nbsp;Menu2</i></li>
+				</ul>
 			</li>
 		</ul>
+		<div class="footer-copyright py-3 text-center footer">
+			<a onclick="alert('test');">
+				<i class="text-muted font-weight-lighter">Author</i>
+			</a>
+		</div>
 	</div>
 
 	<div class="page-content p-5" id="content">
 		<!-- Toggle button -->
 		<button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4">
 			<i class="fa fa-bars mr-2"></i>
-			<small class="text-uppercase font-weight-bold">Toggle</small>
+			<small class="text-uppercase font-weight-bold" id="collapseButton">Close</small>
 		</button>
 		<h2 class="display-4 text-black">Test</h2>
 		<iframe src="/user/test">
 
 		</iframe>
+		
+		<div id="chat" class="card">
+			<div class="card-header">
+				Chat
+				<i class="fa fa-minus">
+					
+				</i>
+			</div>
+			<div class="card-body overflow-auto">
+				<div class="media mb-3">
+					<img src="https://avatars2.githubusercontent.com/u/3604032?s=460&v=4"
+						 class="mr-3 rounded-circle profile_img img-thumbnail shadow-sm" alt="profile">
+					<div class="media-body align-self-center">
+						<p class="mb-0">너 그거 아니? 오늘 퇴근한 사람이 0명이래...출근은 20명인데...</p>
+						<time>20min</time>
+					</div>
+				</div>
+				
+				<div class="media mb-3">
+					<div class="media-body align-self-center text-right">
+						<p class="mb-0">치킨 추천 받아요</p>
+						<time>20min</time>
+					</div>
+					<img src="https://avatars0.githubusercontent.com/u/59767136?s=460&v=4" 
+						 class="rounded-circle profile_img img-thumbnail shadow-sm ml-3" alt="profile">
+				</div>
+				
+				<div class="media">
+					<div class="media-body align-self-center text-right">
+						<p class="mb-0">양념 순살로 시킵니다 ^^7</p>
+						<time>20min</time>
+					</div>
+					<img src="https://avatars0.githubusercontent.com/u/59767136?s=460&v=4" 
+						 class="rounded-circle profile_img img-thumbnail shadow-sm ml-3" alt="profile">
+				</div>
+				
+			</div>
+			<div class="card-footer">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Message" 
+					aria-label="test" aria-describedby="send">
+					<div class="input-group-append">
+						<button class="btn btn-primary" type="button" id="send">Send</button>
+					</div>
+		 		</div>
+			</div>
 
+		</div>
 		<div id="topMenubar">
 			<!-- Top Menu bar section, we need to insert menus -->
 		</div>
