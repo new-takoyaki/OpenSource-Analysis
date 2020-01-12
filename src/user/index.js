@@ -50,7 +50,7 @@ router.route("/login")
 				user
 					.login(req.body.email, req.body.password, req.ip)
 					.then((account)=>{
-						console.log(account);
+						// console.log(account);
 						req.session.uid = account._id;
 						req.session.email = account.email;
 						req.session.nickname = account.nickname;
